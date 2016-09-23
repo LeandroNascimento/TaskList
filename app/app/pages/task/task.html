@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Nova Tarefa</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="text-center">
+  <ion-list>
+
+    <ion-item>
+      <ion-label floating>Tarefa</ion-label>
+      <ion-input type="text" [(ngModel)]="task.name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Projeto</ion-label>
+      <ion-input type="text" [(ngModel)]="task.projeto"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Status</ion-label>
+      <ion-select [(ngModel)]="task.status" okText="Selecionar" cancelText="Cancelar">
+        <ion-option value="Em Andamento" selected="true">Em Andamento</ion-option>
+        <ion-option value="Parado">Parado</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+    <ion-label>Porcentagem de conclusão</ion-label>
+    <ion-range min="0" max="100" [(ngModel)]="task.percentage" secondary>
+      <ion-label range-left>0</ion-label>
+      <ion-label range-right>100</ion-label>
+    </ion-range>
+  </ion-item>
+
+  </ion-list>
+  <div>
+    <button ion-button color="danger" round (click)="dismiss()">Cancelar</button>
+    <button ion-button color="danger" round (click)="addTask(task)">Salvar</button>
+  </div>
+</ion-content>
