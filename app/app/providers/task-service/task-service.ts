@@ -15,7 +15,7 @@ export class TaskService {
     }
 
     return new Promise(resolve => {
-      this.http.get('http://localhost:8000/api/v1/tasks', {headers: this.headers})
+      this.http.get('http://192.168.10.10:8000/api/v1/tasks', {headers: this.headers})
         .map(res => res.json())
         .subscribe(data => {
           console.log(data);
@@ -31,7 +31,7 @@ export class TaskService {
     }
 
     return new Promise(resolve => {
-      this.http.post('http://localhost:8000/api/v1/task', data, {headers: this.headers})
+      this.http.post('http://192.168.10.10:8000/api/v1/task', data, {headers: this.headers})
         .map(res => res.json())
         .subscribe(data => {
           console.log(data);
@@ -47,7 +47,7 @@ export class TaskService {
     }
 
     return new Promise(resolve => {
-      this.http.put('http://localhost:8000/api/v1/tasks/' + id, data, {headers: this.headers})
+      this.http.put('http://192.168.10.10:8000/api/v1/task/' + id, data, {headers: this.headers})
         .map(res => res.json())
         .subscribe(data => {
           console.log(data);
@@ -63,7 +63,7 @@ export class TaskService {
     }
 
     return new Promise(resolve => {
-      this.http.delete('http://localhost:8000/api/v1/tasks/' + id, {headers: this.headers})
+      this.http.delete('http://192.168.10.10:8000/api/v1/task/' + id, {headers: this.headers})
         .map(res => res.json())
         .subscribe(data => {
           console.log(data);

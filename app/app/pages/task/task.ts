@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ViewController, NavController } from 'ionic-angular';
+import { Storage, LocalStorage, ViewController, NavController } from 'ionic-angular';
 import {TaskService} from '../../providers/task-service/task-service';
 
 @Component({
@@ -8,6 +8,7 @@ import {TaskService} from '../../providers/task-service/task-service';
 })
 export class TaskPage {
   public task: any;
+  public local: any;
 
   constructor(public viewCtrl: ViewController, private navCtrl: NavController, public taskService : TaskService) {
     this.task = {};
@@ -22,16 +23,16 @@ export class TaskPage {
    this.taskService.addTask(task)
      .then(data => {
        this.task = data;
-       console.log(this.task);
      })
+     this.dismiss();
+     this.loadTasks();
  }
 
- editTask(id, task){
-   this.taskService.editTask(id, task)
+ loadTasks() {
+   this.taskService.allTasks()
      .then(data => {
-       this.task = data;
-       console.log(this.task);
+       this.local = new Storage(LocalStorage);
+       this.local.set('tasks', data);
      })
  }
-
 }

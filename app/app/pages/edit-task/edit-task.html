@@ -5,7 +5,7 @@
         <ion-icon name="close"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>Nova Tarefa</ion-title>
+    <ion-title>Editar Tarefa</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -25,8 +25,8 @@
     <ion-item>
       <ion-label>Status</ion-label>
       <ion-select [(ngModel)]="task.status" okText="Selecionar" cancelText="Cancelar">
-        <ion-option value="Em Andamento" selected="true">Em Andamento</ion-option>
-        <ion-option value="Parado">Parado</ion-option>
+        <ion-option value="Em Andamento" [checked]="task.status">Em Andamento</ion-option>
+        <ion-option value="Parado" [checked]="task.status">Parado</ion-option>
       </ion-select>
     </ion-item>
 
@@ -40,7 +40,7 @@
 
   </ion-list>
   <div>
-    <button ion-button color="danger" round (click)="dismiss()">Cancelar</button>
-    <button ion-button color="danger" round (click)="addTask(task)">Salvar</button>
+    <button ion-button color="danger" round (click)="deleteTask(task)">Excluir</button>
+    <button ion-button color="danger" round (click)="editTask(task)">Alterar</button>
   </div>
 </ion-content>

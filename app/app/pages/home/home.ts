@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ModalController, NavController } from 'ionic-angular';
+import { ViewController, Storage, LocalStorage, ModalController, NavController } from 'ionic-angular';
 import { TaskPage } from '../task/task';
+import { EditTaskPage } from '../edit-task/edit-task';
 import {TaskService} from '../../providers/task-service/task-service';
 
 @Component({
@@ -9,10 +10,17 @@ import {TaskService} from '../../providers/task-service/task-service';
 })
 export class HomePage {
   public tasks: any;
+  public local: any;
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public taskService: TaskService) {
+  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public modalCtrl: ModalController, public taskService: TaskService) {
     this.loadTask();
   }
+
+  ionViewDidEnter() {
+        console.log('a');
+        setTimeout(1000);
+        this.loadTask();
+    }
 
   loadTask() {
     this.taskService.allTasks()
@@ -27,8 +35,10 @@ export class HomePage {
     modal.present();
   }
 
-  modalEditTask() {
-    let modal = this.modalCtrl.create(TaskPage);
+  modalEditTask(task) {
+    this.local = new Storage(LocalStorage);
+    this.local.set('task', JSON.stringify(task));
+    let modal = this.modalCtrl.create(EditTaskPage);
     modal.present();
   }
 }
